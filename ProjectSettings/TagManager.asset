@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - camera_limit_left
+  - camera_limit_top
+  - camera_limit_right
+  - camera_limit_bottom
   layers:
   - Default
   - TransparentFX
