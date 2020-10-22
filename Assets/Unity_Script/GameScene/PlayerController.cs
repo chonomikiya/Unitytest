@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour
     public bool rb_freezepos_top = false;
     public bool rb_freezepos_bottom = false;
 
-    public float multiplay_x;
-    public float multiplay_y;
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "camera_limit_left" ){
@@ -57,10 +55,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         NotOffScreen();
-        this.multiplay_x = Input.GetAxis("Horizontal");
-        this.multiplay_y = Input.GetAxis("Vertical");
-        float x = this.multiplay_x;
-        float y = this.multiplay_y ;
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
 
         
         // xとyにspeedを掛ける
@@ -83,8 +79,6 @@ public class PlayerController : MonoBehaviour
 
         // 機体にトルクを加える
         rigidbody.AddTorque(rotationTorque + restoringTorque);
-
-
     }
 
     void NotOffScreen(){
