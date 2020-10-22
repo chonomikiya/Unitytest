@@ -57,8 +57,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         NotOffScreen();
-        
-
         this.multiplay_x = Input.GetAxis("Horizontal");
         this.multiplay_y = Input.GetAxis("Vertical");
         float x = this.multiplay_x;
@@ -90,35 +88,63 @@ public class PlayerController : MonoBehaviour
     }
 
     void NotOffScreen(){
-        if (rb_freezepos_top){
+        if(rb_freezepos_top || rb_freezepos_bottom){
             rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-            if (Input.GetKey("down") && !Input.GetKey("up")  && !Input.GetKey("left")&& !Input.GetKey("right")){
-                rb_freezepos_top = false;
+            if((rb_freezepos_top && Input.GetKey("down") && !Input.GetKey("up")) 
+            || (rb_freezepos_bottom && Input.GetKey("up") && !Input.GetKey("down"))){
+                if(rb_freezepos_top)rb_freezepos_top =false;
+                if(rb_freezepos_bottom)rb_freezepos_bottom = false;
                 rigidbody.constraints = RigidbodyConstraints.None;
             }
         }
-        if (rb_freezepos_bottom){
-            rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-            if (Input.GetKey("up") && !Input.GetKey("down")){
-                rb_freezepos_bottom = false;
-                rigidbody.constraints = RigidbodyConstraints.None;
-            }
-        }
-        if (rb_freezepos_left){
+        if(rb_freezepos_left || rb_freezepos_right){
             rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
-            if (Input.GetKey("right") && !Input.GetKey("left")&& !Input.GetKey("down")&& !Input.GetKey("up") ){
-                rb_freezepos_left = false;
+            if((rb_freezepos_left && Input.GetKey("right") && !Input.GetKey("left")) 
+            ||(rb_freezepos_right && Input.GetKey("left")&&!Input.GetKey("right"))){
+                if(rb_freezepos_left)rb_freezepos_left = false;
+                if(rb_freezepos_right)rb_freezepos_right = false;
                 rigidbody.constraints = RigidbodyConstraints.None;
             }
         }
-        if (rb_freezepos_right){
-            rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
-            if (Input.GetKey("left") && !Input.GetKey("right")){
-                rb_freezepos_right = false;
-                rigidbody.constraints = RigidbodyConstraints.None;
-            }
+        if((rb_freezepos_top || rb_freezepos_bottom) 
+        && (rb_freezepos_left || rb_freezepos_right)){
+            rigidbody.constraints = 
+            RigidbodyConstraints.FreezePositionX|RigidbodyConstraints.FreezePositionY;
+            //  if((rb_freezepos_top && Input.GetKey("down") && !Input.GetKey("up")) 
+            // || (rb_freezepos_bottom && Input.GetKey("up") && !Input.GetKey("down"))){
+            //     if(rb_freezepos_top)rb_freezepos_top =false;
+            //     if(rb_freezepos_bottom)rb_freezepos_bottom = false;
+            //     rigidbody.constraints = RigidbodyConstraints.None;
         }
-        
-    }
 
+        // if (rb_freezepos_top){
+        //     rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        //     Debug.Log(RigidbodyConstraints.FreezePositionY);
+        //     if (Input.GetKey("down") && !Input.GetKey("up")  && !Input.GetKey("left")&& !Input.GetKey("right")){
+        //         rb_freezepos_top = false;
+        //         rigidbody.constraints = RigidbodyConstraints.None;
+        //     }
+        // }
+        // if (rb_freezepos_bottom){
+        //     rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        //     if (Input.GetKey("up") && !Input.GetKey("down")){
+        //         rb_freezepos_bottom = false;
+        //         rigidbody.constraints = RigidbodyConstraints.None;
+        //     }
+        // }
+        // if (rb_freezepos_left){
+        //     rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+        //     if (Input.GetKey("right") && !Input.GetKey("left")&& !Input.GetKey("down")&& !Input.GetKey("up") ){
+        //         rb_freezepos_left = false;
+        //         rigidbody.constraints = RigidbodyConstraints.None;
+        //     }
+        // }
+        // if (rb_freezepos_right){
+        //     rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+        //     if (Input.GetKey("left") && !Input.GetKey("right")){
+        //         rb_freezepos_right = false;
+        //         rigidbody.constraints = RigidbodyConstraints.None;
+        //     }
+        // }
+    }
 }
