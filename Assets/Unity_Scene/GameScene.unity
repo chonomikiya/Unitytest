@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 230833082}
   - component: {fileID: 230833081}
   - component: {fileID: 230833080}
+  - component: {fileID: 230833083}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -389,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230833079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457744177}
@@ -399,6 +400,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &230833083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230833079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c058c7283d43a435689114e6f4b5d91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: -10
+  player: {fileID: 1825883076}
 --- !u!1 &328020568
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,7 +910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727068933}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 60}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1.4285713, y: 2.0408163, z: 1.1904762}
   m_Children: []
   m_Father: {fileID: 1825883076}
@@ -918,7 +933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4016885670465544, guid: 61954f4a94623b642b25d1e38295a31a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4016885670465544, guid: 61954f4a94623b642b25d1e38295a31a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -988,6 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8765aeec4e940b6af986f4e81bf39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movespeed: 10
   speed: 10
   moveForceMultiplier: 0
   yawTorqueMagnitude: 60
