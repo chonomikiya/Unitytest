@@ -5,20 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // speedを制御する
+    public float movespeed = 10.0f;
     public float speed = 10;
     public float moveForceMultiplier;
 
-    // 水平移動時に機首を左右に向けるトルク
-    public float yawTorqueMagnitude = 30.0f;
+    // 水平移動時に機首を左右に向けるトルク30.0f
+    public float yawTorqueMagnitude = 60.0f;
 
-    // 垂直移動時に機首を上下に向けるトルク
-    public float pitchTorqueMagnitude = 60.0f;
+    // 垂直移動時に機首を上下に向けるトルク60.0f
+    public float pitchTorqueMagnitude = 40.0f;
 
-    // 水平移動時に機体を左右に傾けるトルク
+    // 水平移動時に機体を左右に傾けるトルク10.0f
     public float rollTorqueMagnitude = 30.0f;
 
-    // バネのように姿勢を元に戻すトルク
-    public float restoringTorqueMagnitude = 100.0f;
+    // バネのように姿勢を元に戻すトルク100.0f
+    public float restoringTorqueMagnitude = 50.0f;
 
     private Vector3 Player_pos;
     private new Rigidbody rigidbody;
@@ -26,7 +27,6 @@ public class PlayerController : MonoBehaviour
     public bool rb_freezepos_right = false;
     public bool rb_freezepos_top = false;
     public bool rb_freezepos_bottom = false;
-
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "camera_limit_left" ){
@@ -41,15 +41,12 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "camera_limit_bottom" ){
             rb_freezepos_bottom = true;
         }
-        }
-
+    }
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-
         // バネ復元力でゆらゆら揺れ続けるのを防ぐため、angularDragを大きめにしておく
         rigidbody.angularDrag = 20.0f;
-        
     }
 
     void FixedUpdate()
@@ -57,10 +54,9 @@ public class PlayerController : MonoBehaviour
         NotOffScreen();
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
-
         
         // xとyにspeedを掛ける
-        rigidbody.AddForce(x * speed, y * speed, 0);
+        rigidbody.AddForce(x * speed, y * speed, movespeed);
 
         Vector3 moveVector = Vector3.zero;
 
