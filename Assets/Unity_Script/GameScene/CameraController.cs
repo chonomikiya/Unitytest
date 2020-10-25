@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     {
         //yetttttttttttttt
         Vector3 pos = transform.position;
-        pos.z += player.position.z;
+        pos.z = player.position.z + offset;
         transform.position = pos;
     }
 }
