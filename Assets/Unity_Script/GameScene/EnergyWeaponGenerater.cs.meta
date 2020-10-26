@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 8aa911e22e015403da26bcf61ddabaa6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - energyWeaponPrefab: {fileID: 100000, guid: 46e5113392a8a394da11e1781a85dc2d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
