@@ -8,6 +8,8 @@ TagManager:
   - camera_limit_top
   - camera_limit_right
   - camera_limit_bottom
+  - Enemy
+  - ReticleTarget
   layers:
   - Default
   - TransparentFX

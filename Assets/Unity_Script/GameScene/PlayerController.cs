@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     // speedを制御する
     public float movespeed = 10.0f;
-    public float speed = 10;
+    private const float speed = 20;
+    public float speedCtl = 0;
     public float moveForceMultiplier;
 
     // 水平移動時に機首を左右に向けるトルク30.0f
@@ -51,12 +52,18 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speedCtl = 19;
+        }else {
+            speedCtl = 0;
+        }
         NotOffScreen();
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         
         // xとyにspeedを掛ける
-        rigidbody.AddForce(x * speed, y * speed, movespeed);
+        rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
 
         Vector3 moveVector = Vector3.zero;
 
