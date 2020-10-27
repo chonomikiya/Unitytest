@@ -295,7 +295,7 @@ PrefabInstance:
     - target: {fileID: 134103064721710614, guid: 0eab2fe65494345f2ae6b2ae506eb4c2,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 208463140169192470, guid: 0eab2fe65494345f2ae6b2ae506eb4c2,
         type: 3}
@@ -900,7 +900,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1488096175762158, guid: 61954f4a94623b642b25d1e38295a31a, type: 3}
       propertyPath: m_Name
-      value: ter_kyShip_Fihter_
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488096175762158, guid: 61954f4a94623b642b25d1e38295a31a, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4016885670465544, guid: 61954f4a94623b642b25d1e38295a31a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1159,7 +1163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063766976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1825883076}
@@ -1177,4 +1181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa911e22e015403da26bcf61ddabaa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyWeaponPrefab: {fileID: 0}
+  energyWeaponPrefab: {fileID: 7388111657129176023, guid: 44515bf79db994c038e71aa1e951a77d,
+    type: 3}
