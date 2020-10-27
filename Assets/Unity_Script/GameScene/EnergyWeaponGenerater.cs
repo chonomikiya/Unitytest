@@ -24,7 +24,7 @@ public class EnergyWeaponGenerater : MonoBehaviour
             // WeaponInterval = true;
             energyWeapon = Instantiate(energyWeaponPrefab) as GameObject;
             energyWeapon.GetComponent<EnergyWeaponDirector>().chargeTimer = true;
-            energyWeapon.transform.parent = GameObject.Find("Player").transform;
+            energyWeapon.transform.parent = this.transform;
         }
         if(Input.GetKeyUp(KeyCode.X)){
             // WeaponInterval = false;
