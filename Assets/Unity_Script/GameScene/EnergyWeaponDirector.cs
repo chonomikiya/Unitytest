@@ -7,7 +7,7 @@ public class EnergyWeaponDirector : MonoBehaviour
     private SphereCollider myCollider;
     private Rigidbody myRBody;
     public bool chargeTimer = false ;
-    public float releaseWeapon = 2000;
+    public Vector3 releaseWeapon = new Vector3(0,0,2000.0f);
     public bool forceWeapon =  false;
     
     
@@ -17,7 +17,6 @@ public class EnergyWeaponDirector : MonoBehaviour
 
         myRBody = GetComponent<Rigidbody>();
         // myCollider = GetComponent<SphereCollider>();
-        this.GetComponent<Rigidbody>().velocity = new Vector3(0,0,40.0f);
     }
 
     // Update is called once per frame
@@ -27,9 +26,10 @@ public class EnergyWeaponDirector : MonoBehaviour
             this.transform.localPosition = new Vector3(0,0,0);
         }
         if(forceWeapon){
-            myRBody.AddRelativeForce(this.transform.forward * releaseWeapon);
-        
-            if(this.transform.localPosition.z > 200){
+            myRBody.AddRelativeForce(this.transform.forward + releaseWeapon);        
+            if(Vector3.Distance
+            (this.transform.position,GameObject.Find("Player").transform.position) > 50)
+            {
                 Destroy(this.gameObject);
                 forceWeapon = false;
             }
@@ -42,6 +42,7 @@ public class EnergyWeaponDirector : MonoBehaviour
         
         Vector3 target = GameObject.Find("ReticleTarget").transform.position;
         transform.LookAt(target);
+        myRBody.velocity = this.transform.forward * 20.0f;
         forceWeapon = true;
         // myRBody.AddRelativeForce(this.transform.forward * releaseWeapon);
     }
