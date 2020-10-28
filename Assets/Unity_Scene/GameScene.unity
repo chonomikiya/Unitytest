@@ -556,11 +556,11 @@ Terrain:
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
-  m_ScaleInLightmap: 0.0256
+  m_ScaleInLightmap: 1
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
+  m_AllowAutoConnect: 0
 --- !u!4 &328020571
 Transform:
   m_ObjectHideFlags: 0
@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8765aeec4e940b6af986f4e81bf39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 10
+  movespeed: 30
   speedCtl: 0
   moveForceMultiplier: 0
   yawTorqueMagnitude: 60

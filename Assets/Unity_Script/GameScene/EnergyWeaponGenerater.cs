@@ -29,6 +29,7 @@ public class EnergyWeaponGenerater : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.X)){
             // WeaponInterval = false;
             energyWeapon.GetComponent<EnergyWeaponDirector>().fireWeapon();
+            Debug.Log("fire");
         }
 
         // if(WeaponInterval && energyWeapon == null){
