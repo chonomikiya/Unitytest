@@ -10,6 +10,7 @@ TagManager:
   - camera_limit_bottom
   - Enemy
   - ReticleTarget
+  - Bullet_Fire
   layers:
   - Default
   - TransparentFX
