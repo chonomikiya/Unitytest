@@ -7,9 +7,8 @@ public class EnemyDestroy : MonoBehaviour
     
     int Damage = 0;
     private void OnParticleCollision(GameObject other) {
-        Debug.Log(other.name);
         Damage++;
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
     }
     
     // Start is called before the first frame update

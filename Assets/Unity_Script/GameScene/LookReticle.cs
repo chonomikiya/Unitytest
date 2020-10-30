@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReticleTargetDistance : MonoBehaviour
+public class LookReticle : MonoBehaviour
 {
+    GameObject target = null;
     // Start is called before the first frame update
     void Start()
     {
-
+        target = GameObject.Find("ReticleTarget");
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.localPosition = new Vector3(0,-2,20);
+        this.transform.LookAt(target.transform);
     }
 }
