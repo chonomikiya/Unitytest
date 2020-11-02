@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
             rb_freezepos_bottom = true;
         }
     }
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Enemy")){
+            Destroy(this.gameObject);
+        }    
+    }
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
