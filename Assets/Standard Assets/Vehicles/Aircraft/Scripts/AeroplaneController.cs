@@ -57,7 +57,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 					componentsInChild.motorTorque = 0.18f;
 				}
 			}
-            m_Rigidbody.velocity = new Vector3(0,0,20);
+            m_Rigidbody.velocity = new Vector3(0,0,50);
         }
 
 

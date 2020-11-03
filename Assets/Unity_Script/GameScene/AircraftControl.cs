@@ -16,7 +16,7 @@ public class AircraftControl : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            Missile.GetComponent<MissileController>().Fire();
+            Missile.GetComponent<MissileController>().Fire(GetComponent<Rigidbody>());
             Missile.transform.parent = null;
 
         }

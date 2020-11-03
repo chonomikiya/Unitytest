@@ -10,11 +10,6 @@ public class ReticleUI : MonoBehaviour
 
     private RectTransform uiImage;
     private  Rigidbody rbody;
-    public float speed = 0.05f;
-    public  Vector3 startWorldPointX;
-    public  float endWorldPointX;
-    public  float startWorldPointY;
-    public  float endWorldPointY; 
 
     Vector3 lb, rt, lt, rb;
     float distance;
@@ -27,11 +22,6 @@ public class ReticleUI : MonoBehaviour
  
     void Update()
     {
-        // distance = Vector3.Distance(transform.position,targetObject.position);
-        // lb = Camera.main.ViewportToWorldPoint( new Vector3(0, 0, distance));
-		// rt = Camera.main.ViewportToWorldPoint( new Vector3(1, 1, distance));
-		// lt = new Vector3( lb.x, rt.y, lb.z);
-		// rb = new Vector3( rt.x, lb.y, rt.z);
         uiImage.position
             = RectTransformUtility.
             WorldToScreenPoint(Camera.main,targetObject.position);
@@ -39,6 +29,24 @@ public class ReticleUI : MonoBehaviour
             Vector3 pos_temp = uiImage.position;
             pos_temp.y = 10.0f;
             uiImage.position = pos_temp;
+        }
+        if(uiImage.position.y > 600.0f){
+            Vector3 pos_temp = uiImage.position;
+            pos_temp.y = 600.0f;
+            uiImage.position = pos_temp;
+        }
+        if(uiImage.position.x < 10.0f){
+            Vector3 pos_temp = uiImage.position;
+            pos_temp.x = 10.0f;
+            uiImage.position = pos_temp;
+        }
+        if(uiImage.position.x > 1200.0f){
+            Vector3 pos_temp = uiImage.position;
+            pos_temp.x = 1200.0f;
+            uiImage.position = pos_temp;
+        }
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log(uiImage.position);
         }
     }
 }
