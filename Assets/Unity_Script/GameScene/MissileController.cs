@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class MissileController : MonoBehaviour
+{
     enum State {
         stay,search,move,delete
     };
-public class MissileController : MonoBehaviour
-{
     GameObject target = null;
     Rigidbody m_rigidbody;
     [SerializeField]

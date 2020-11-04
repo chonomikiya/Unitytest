@@ -10,20 +10,10 @@ public class move_test : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody>();
     }
-    // void OnCollisionEnter(Collision other) {
-    //     if(other.gameObject.CompareTag("Bullet_Fire")){
-    //         Debug.Log(other.gameObject.name.ToString());
-    //     }
-    // }
-    // void OnTriggerEnter(Collider other) {
-    //     if(other.gameObject.CompareTag("Bullet_Fire")){
-    //         Debug.Log(other.gameObject.name.ToString());
-    //     }
-    // }
+
     private void OnParticleCollision(GameObject other) {
         Debug.Log("particle");
     }
-
 
     // Update is called once per frame
     void Update () {
@@ -45,6 +35,5 @@ public class move_test : MonoBehaviour
         if(Input.GetKeyDown (KeyCode.X)){
             transform.Translate (0,-3,0);
         }
-        this.transform.LookAt(GameObject.Find("CannonMachine").transform);
 	}
 }
