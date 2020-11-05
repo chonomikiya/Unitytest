@@ -17,22 +17,22 @@ public class move_test : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			transform.Translate (0, 0, 3);
+		if (Input.GetKey (KeyCode.UpArrow)) {
+			transform.Translate (0, 0, 0.2f);
 		}
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			transform.Translate (0, 0, -3);
+		if (Input.GetKey (KeyCode.DownArrow)) {
+			transform.Translate (0, 0, -0.2f);
 		}
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			transform.Translate (-3, 0, 0);
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			transform.Translate (-0.2f, 0, 0);
 		}
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			transform.Translate (3, 0, 0);
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			transform.Translate (0.2f, 0, 0);
 		}
-        if(Input.GetKeyDown (KeyCode.Z)){
+        if(Input.GetKey (KeyCode.Z)){
             transform.Translate (0,3,0);
         }
-        if(Input.GetKeyDown (KeyCode.X)){
+        if(Input.GetKey (KeyCode.X)){
             transform.Translate (0,-3,0);
         }
 	}

@@ -30,21 +30,6 @@ public class ReticleUI : MonoBehaviour
             pos_temp.y = 10.0f;
             uiImage.position = pos_temp;
         }
-        if(uiImage.position.y > 600.0f){
-            Vector3 pos_temp = uiImage.position;
-            pos_temp.y = 600.0f;
-            uiImage.position = pos_temp;
-        }
-        if(uiImage.position.x < 10.0f){
-            Vector3 pos_temp = uiImage.position;
-            pos_temp.x = 10.0f;
-            uiImage.position = pos_temp;
-        }
-        if(uiImage.position.x > 1200.0f){
-            Vector3 pos_temp = uiImage.position;
-            pos_temp.x = 1200.0f;
-            uiImage.position = pos_temp;
-        }
         if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log(uiImage.position);
         }

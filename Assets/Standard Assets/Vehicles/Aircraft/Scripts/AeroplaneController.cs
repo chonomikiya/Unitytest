@@ -43,6 +43,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	    WheelCollider[] m_WheelColliders;
 
 
+
         private void Start()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
@@ -57,7 +58,8 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 					componentsInChild.motorTorque = 0.18f;
 				}
 			}
-            m_Rigidbody.velocity = new Vector3(0,0,50);
+            //add
+            m_Rigidbody.velocity = new Vector3(0,0,40);
         }
 
 

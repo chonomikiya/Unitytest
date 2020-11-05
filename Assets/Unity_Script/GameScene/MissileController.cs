@@ -11,7 +11,7 @@ public class MissileController : MonoBehaviour
     GameObject target = null;
     Rigidbody m_rigidbody;
     [SerializeField]
-    float thurust = 1000.0f;
+    float thurust = 500.0f;
     [SerializeField]
     Vector3 addforce;
     State state;
@@ -24,9 +24,6 @@ public class MissileController : MonoBehaviour
         target = GameObject.Find("Player");
         m_rigidbody = GetComponent<Rigidbody>();
     }
-
-    
-
     // Update is called once per frame
     void Update()
     {
@@ -34,17 +31,20 @@ public class MissileController : MonoBehaviour
             case State.stay:
                 break;
             case State.search:
-                this.transform.LookAt(target.transform);
-                m_rigidbody.AddForce(this.transform.forward* thurust);
-                if(m_rigidbody.velocity.z >150){
+                this.transform.LookAt(target.transform.position);
+                Vector3 velo = m_rigidbody.velocity;
+                m_rigidbody.AddForce(Vector3.forward *1000);
+                if(Input.GetKeyDown(KeyCode.Space)){
+                    Debug.Log(m_rigidbody.transform.forward);
+                }
+                if(m_rigidbody.velocity.y > 0){
                     state = State.move;
-                    StartCoroutine(statectl());
+                    GetComponentInChildren<Collider>().enabled = true;
                     Debug.Log("State.search");
                 }
                 break;
             case State.move:
-                m_rigidbody.AddForce(this.transform.forward * thurust);
-                
+                m_rigidbody.AddForce(this.transform.forward * thurust);                
                 break;
             case State.delete:
                 Destroy(this.gameObject);
@@ -57,12 +57,15 @@ public class MissileController : MonoBehaviour
         state = State.delete;
     }
     public void Fire(Rigidbody parent){
+        target = GameObject.Find("Player");
+        m_rigidbody = GetComponent<Rigidbody>();
         m_rigidbody.useGravity = false;
         m_rigidbody.isKinematic = false;
         m_rigidbody.velocity = parent.velocity;
         state = State.search;
-        // m_rigidbody.AddForce(this.transform.forward * 2000.0f);
-        Debug.Log(parent.velocity);
         this.transform.LookAt(target.transform.position);
+        // Vector3 temp = m_rigidbody.velocity;
+        // temp.y -= 20; 
+        // m_rigidbody.velocity = temp;
     }
 }

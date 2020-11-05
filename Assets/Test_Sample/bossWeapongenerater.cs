@@ -14,7 +14,9 @@ public class bossWeapongenerater : MonoBehaviour
     GameObject missilePrefab = null;
     GameObject GatlingRight = null;
     GameObject GatlingLeft = null;
-    bool switchAttack = true;
+    ParticleSystem m_particleRight = null;
+    ParticleSystem m_particleLeft = null;
+    bool switchAttack = false;
     int acttimer = 0;
     [SerializeField]
     int  threshold = 500;
@@ -24,7 +26,9 @@ public class bossWeapongenerater : MonoBehaviour
         state = State.stay;
         target = GameObject.Find("Player");
         GatlingRight = transform.GetChild(1).gameObject;
+        m_particleRight = GatlingRight.GetComponentInChildren<ParticleSystem>();
         GatlingLeft = transform.GetChild(2).gameObject;
+        m_particleLeft = GatlingLeft.GetComponentInChildren<ParticleSystem>();
     }
     [SerializeField]
     Vector3 offset = new Vector3(0,0,0);
@@ -45,6 +49,8 @@ public class bossWeapongenerater : MonoBehaviour
                     }else{
                         state = State.gatling;
                         switchAttack = !switchAttack;
+                        m_particleRight.Play();
+                        m_particleLeft.Play();
                     }
                 }
                 break;
@@ -56,8 +62,12 @@ public class bossWeapongenerater : MonoBehaviour
                     Debug.Log("State.missile:");
                 break;
             case State.gatling:
-                gatling();
-                
+                if(acttimer > threshold){
+                    m_particleRight.Stop();
+                    m_particleLeft.Stop();
+                    acttimer = 0;
+                    state = State.stay;
+                }
                 break;
         }
         acttimer++;
@@ -71,8 +81,8 @@ public class bossWeapongenerater : MonoBehaviour
     }
     private void gatling(){
         
-        GatlingLeft.GetComponent<ParticleSystem>().Play();
-        GatlingRight.GetComponent<ParticleSystem>().Play();
+        GatlingLeft.GetComponentInChildren<ParticleSystem>().Play();
+        GatlingRight.GetComponentInChildren<ParticleSystem>().Play();
         
     }
 }
