@@ -15,7 +15,7 @@ public class EnergyWeaponDirector : MonoBehaviour
     void Start()
     {
 
-        myRBody = GetComponent<Rigidbody>();
+        myRBody = GetComponentInParent<Rigidbody>();
         // myCollider = GetComponent<SphereCollider>();
     }
 

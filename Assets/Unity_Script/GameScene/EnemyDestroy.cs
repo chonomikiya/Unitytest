@@ -20,7 +20,7 @@ public class EnemyDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Damage > 5){
+        if(Damage > 2){
             Destroy(this.gameObject);
         }
     }

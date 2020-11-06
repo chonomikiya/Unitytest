@@ -20,9 +20,9 @@ public class MissileController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = State.stay;
-        target = GameObject.Find("Player");
-        m_rigidbody = GetComponent<Rigidbody>();
+        // // state = State.stay;
+        // target = GameObject.Find("Player");
+        // m_rigidbody = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void Update()
@@ -31,20 +31,21 @@ public class MissileController : MonoBehaviour
             case State.stay:
                 break;
             case State.search:
-                this.transform.LookAt(target.transform.position);
-                Vector3 velo = m_rigidbody.velocity;
-                m_rigidbody.AddForce(Vector3.forward *1000);
-                if(Input.GetKeyDown(KeyCode.Space)){
-                    Debug.Log(m_rigidbody.transform.forward);
-                }
-                if(m_rigidbody.velocity.y > 0){
+                this.transform.LookAt(target.transform);
+                // Vector3 velo = m_rigidbody.velocity;
+                // velo.y = (-velo.y)+10;
+                // velo.z *=-1;
+                m_rigidbody.AddRelativeForce(Vector3.forward *thurust);
+                if(Vector3.Distance(this.transform.position,target.transform.position ) < 100){
+                    Debug.Log(Vector3.Distance(this.transform.position,target.transform.position));
+
                     state = State.move;
-                    GetComponentInChildren<Collider>().enabled = true;
                     Debug.Log("State.search");
+                    GetComponent<Collider>().enabled = true;
                 }
                 break;
             case State.move:
-                m_rigidbody.AddForce(this.transform.forward * thurust);                
+                m_rigidbody.AddRelativeForce(Vector3.forward *thurust);                
                 break;
             case State.delete:
                 Destroy(this.gameObject);
@@ -61,11 +62,9 @@ public class MissileController : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         m_rigidbody.useGravity = false;
         m_rigidbody.isKinematic = false;
-        m_rigidbody.velocity = parent.velocity;
         state = State.search;
-        this.transform.LookAt(target.transform.position);
-        // Vector3 temp = m_rigidbody.velocity;
-        // temp.y -= 20; 
-        // m_rigidbody.velocity = temp;
+        this.transform.LookAt(target.transform);
+        // m_rigidbody.velocity = addforce;
+        m_rigidbody.AddRelativeForce(addforce);
     }
 }

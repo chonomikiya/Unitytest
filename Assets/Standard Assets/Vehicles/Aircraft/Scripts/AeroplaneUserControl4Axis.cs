@@ -27,17 +27,17 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 
         private void FixedUpdate()
         {
-            // Read input for the pitch, yaw, roll and throttle of the aeroplane.
-            float roll = CrossPlatformInputManager.GetAxis("Mouse X");
-            float pitch = CrossPlatformInputManager.GetAxis("Mouse Y");
-            m_AirBrakes = CrossPlatformInputManager.GetButton("Fire1");
-            m_Yaw = CrossPlatformInputManager.GetAxis("Horizontal");
-            m_Throttle = CrossPlatformInputManager.GetAxis("Vertical");
-#if MOBILE_INPUT
-        AdjustInputForMobileControls(ref roll, ref pitch, ref m_Throttle);
-#endif
-            // Pass the input to the aeroplane
-            m_Aeroplane.Move(roll, pitch, m_Yaw, m_Throttle, m_AirBrakes);
+//             // Read input for the pitch, yaw, roll and throttle of the aeroplane.
+//             float roll = CrossPlatformInputManager.GetAxis("Mouse X");
+//             float pitch = CrossPlatformInputManager.GetAxis("Mouse Y");
+//             m_AirBrakes = CrossPlatformInputManager.GetButton("Fire1");
+//             m_Yaw = CrossPlatformInputManager.GetAxis("Horizontal");
+//             m_Throttle = CrossPlatformInputManager.GetAxis("Vertical");
+// #if MOBILE_INPUT
+//         AdjustInputForMobileControls(ref roll, ref pitch, ref m_Throttle);
+// #endif
+//             // Pass the input to the aeroplane
+//             m_Aeroplane.Move(roll, pitch, m_Yaw, m_Throttle, m_AirBrakes);
         }
 
 

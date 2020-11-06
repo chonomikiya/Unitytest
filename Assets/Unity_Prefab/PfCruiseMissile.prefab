@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 1581328077209407613}
   - component: {fileID: 2818940527778746944}
   - component: {fileID: 2818940527778746947}
+  - component: {fileID: 5120383398935338363}
   m_Layer: 0
   m_Name: PfCruiseMissile
   m_TagString: Untagged
@@ -141,7 +142,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thurust: 1000
-  addforce: {x: 0, y: 0, z: 0}
+  addforce: {x: 0, y: -20, z: 0}
+--- !u!64 &5120383398935338363
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294391414826888899}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1836222553264194175, guid: 4ab581e06f3b88042b9154887d4c359e, type: 3}
 --- !u!1 &4955746059715373408
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +404,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4821075407227981522}
   - component: {fileID: 5374052318209120278}
-  - component: {fileID: 7823492573010066844}
   m_Layer: 0
   m_Name: CruiseMissile
   m_TagString: Untagged
@@ -446,17 +460,3 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6752861576653889524}
   m_Enabled: 1
---- !u!64 &7823492573010066844
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411808566228614337}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1836222553264194175, guid: 4ab581e06f3b88042b9154887d4c359e, type: 3}

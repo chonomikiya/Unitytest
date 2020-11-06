@@ -5,7 +5,8 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     private void OnParticleCollision(GameObject other) {
-        Debug.Log(other.name);
-        other.GetComponent<PlayerController>().Damage();
+        if(other.CompareTag("Player")){
+            other.GetComponent<PlayerController>().Damage();
+        }
     }
 }

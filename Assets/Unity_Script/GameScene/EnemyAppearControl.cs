@@ -8,13 +8,11 @@ public class EnemyAppearControl : MonoBehaviour
     GameObject AircraftPrefab = null;
     [SerializeField]
     // GameObject MachinePrefab = null;
-    Vector3 distance = new Vector3(0,60,400);
+    Vector3 distance = new Vector3(0,20,400);
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player")){
             EnemyAppear();
-            Debug.Log("appear");
         }
-        Debug.Log("appear");
     }
 
     // Start is called before the first frame update
