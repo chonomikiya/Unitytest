@@ -31,6 +31,10 @@ public class AircraftControl : MonoBehaviour
     void Update()
     {
         m_rigidbody.AddRelativeForce(Vector3.forward * 500);
+        if(this.transform.position.y < 10){
+            m_rigidbody.AddRelativeForce(Vector3.up *100);
+
+        }
         if((Vector3.Distance(this.transform.position, target.transform.position) < 350 )&& missileWeapon){
             GameObject m_Missile = Instantiate(missileprefab,this.transform.position,this.transform.rotation) as GameObject;
             m_Missile.GetComponent<MissileController>().Fire(m_rigidbody);

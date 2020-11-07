@@ -5,8 +5,8 @@ using UnityEngine;
 public class FlyMachineContrroller : MonoBehaviour
 {
     Rigidbody m_rigidbody;
-    bool flySwitch;
-    Vector3 addUpDown = new Vector3 (0,5,0);
+    bool flySwitch = true;
+    Vector3 addUpDown = new Vector3 (0,20,0);
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +18,13 @@ public class FlyMachineContrroller : MonoBehaviour
     void Update()
     {
         m_rigidbody.AddForce(addUpDown);
-        if(m_rigidbody.velocity.y  > 1){
+        if(this.transform.position.y  > 11 && flySwitch){
             addUpDown.y *= -1;
-
-        }else if(m_rigidbody.velocity.y  < -1){
+            flySwitch = !flySwitch;
+        }
+        if(this.transform.position.y  < 10 && !flySwitch){
             addUpDown.y *= -1;
-
+            flySwitch = !flySwitch;
         }
         
     }
