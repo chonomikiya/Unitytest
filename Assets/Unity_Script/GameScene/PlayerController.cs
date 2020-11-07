@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "camera_limit_bottom" ){
             rb_freezepos_bottom = true;
         }
+        if(other.gameObject.CompareTag("BossBattle")){
+            movespeed = 0.0f;
+        }
     }
 
     

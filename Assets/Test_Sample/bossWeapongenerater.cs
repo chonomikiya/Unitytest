@@ -6,7 +6,7 @@ using UnityEngine;
 public class bossWeapongenerater : MonoBehaviour
 {
     enum State {
-    stay,    missile,    gatling
+    stay,missile,gatling,longDistance
 };
     State state;
     GameObject target = null;
@@ -23,7 +23,7 @@ public class bossWeapongenerater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = State.stay;
+        state = State.longDistance;
         target = GameObject.Find("Player");
         GatlingRight = transform.GetChild(1).gameObject;
         m_particleRight = GatlingRight.GetComponentInChildren<ParticleSystem>();
@@ -69,8 +69,13 @@ public class bossWeapongenerater : MonoBehaviour
                     state = State.stay;
                 }
                 break;
+            case State.longDistance:
+                break;
         }
         acttimer++;
+    }
+    public void Battle(){
+        state = State.stay;
     }
     private void stay(){
         state = State.missile;        
