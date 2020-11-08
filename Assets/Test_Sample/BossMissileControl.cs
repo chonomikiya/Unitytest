@@ -35,19 +35,19 @@ public class BossMissileControl : MonoBehaviour
             case State.search:
                 this.transform.LookAt(target.transform);
                 Vector3 velo = m_rigidbody.velocity;
-                velo.y = (-velo.y)+5;
-                m_rigidbody.AddForce(velo *10);
-                if(m_rigidbody.velocity.y >0){
-                    state = State.move;
+                    velo.y = (-velo.y);
+                    m_rigidbody.AddForce(velo *10);       
+                
+                if((this.transform.position.y < 10 )|| (m_rigidbody.velocity.y > -1)){
                     GetComponentInChildren<Collider>().enabled = true;
+                    m_rigidbody.velocity /= 10;
+                    state = State.move;
                     Debug.Log("State.search");
                 }
                 break;
             case State.move:
                 StartCoroutine(statectl());
-
                 m_rigidbody.AddForce(transform.forward * thurust);
-                
                 break;
             case State.delete:
                 Destroy(this.gameObject);

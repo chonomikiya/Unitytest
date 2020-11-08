@@ -12,6 +12,7 @@ public class AircraftControl : MonoBehaviour
     int Damage = 0;
     [SerializeField]
     GameObject missileprefab = null;
+    Vector3 m_position;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +32,10 @@ public class AircraftControl : MonoBehaviour
     void Update()
     {
         m_rigidbody.AddRelativeForce(Vector3.forward * 500);
-        if(this.transform.position.y < 10){
-            m_rigidbody.AddRelativeForce(Vector3.up *100);
-
+        if(this.transform.position.y < 15){
+            m_position =this.transform.position;
+            m_position.y = 15;
+            this.transform.position = m_position;
         }
         if((Vector3.Distance(this.transform.position, target.transform.position) < 350 )&& missileWeapon){
             GameObject m_Missile = Instantiate(missileprefab,this.transform.position,this.transform.rotation) as GameObject;

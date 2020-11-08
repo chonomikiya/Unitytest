@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class move_test : MonoBehaviour
 {
+    GameObject boss;
     Rigidbody rbody;
     // Start is called before the first frame update
     void Start()
     {
         rbody = GetComponent<Rigidbody>();
+        boss = GameObject.Find("SF_Free-Fighter");
     }
 
     private void OnParticleCollision(GameObject other) {
@@ -34,6 +36,9 @@ public class move_test : MonoBehaviour
         }
         if(Input.GetKey (KeyCode.X)){
             transform.Translate (0,-3,0);
+        }
+        if(Input.GetKeyDown(KeyCode.A)){
+            boss.GetComponent<bossWeapongenerater>().Battle();
         }
 	}
 }

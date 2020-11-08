@@ -20,6 +20,9 @@ public class bossWeapongenerater : MonoBehaviour
     int acttimer = 0;
     [SerializeField]
     int  threshold = 500;
+    int bossHP = 30;
+    [SerializeField]
+    Vector3 offset = new Vector3(0,0,0);
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +33,11 @@ public class bossWeapongenerater : MonoBehaviour
         GatlingLeft = transform.GetChild(2).gameObject;
         m_particleLeft = GatlingLeft.GetComponentInChildren<ParticleSystem>();
     }
-    [SerializeField]
-    Vector3 offset = new Vector3(0,0,0);
-
+    
+    void OnParticleCollision(GameObject other) {
+        bossHP--;
+        Debug.Log("bossHP--");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -81,13 +86,12 @@ public class bossWeapongenerater : MonoBehaviour
         state = State.missile;        
     }
     private void missile(){
-        GameObject missile = Instantiate(missilePrefab,this.transform.position,this.transform.rotation) as GameObject;
+        GameObject missile = Instantiate(missilePrefab,this.transform.position - new Vector3(0,0,5),this.transform.rotation) as GameObject;
         missile.GetComponent<BossMissileControl>().Fire();
     }
     private void gatling(){
         
         GatlingLeft.GetComponentInChildren<ParticleSystem>().Play();
         GatlingRight.GetComponentInChildren<ParticleSystem>().Play();
-        
     }
 }

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public bool rb_freezepos_right = false;
     public bool rb_freezepos_top = false;
     public bool rb_freezepos_bottom = false;
+    bool vsBoss = false;
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "camera_limit_left" ){
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("BossBattle")){
             movespeed = 0.0f;
+            vsBoss = true;
         }
     }
 
@@ -57,6 +59,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(vsBoss&&this.transform.position.z < 560){
+            movespeed = 10f;
+        }else if(vsBoss&&this.transform.position.z > 560){
+            movespeed = 0;
+        }
+
         if(rigidbody.angularDrag < 20.0f){
             rigidbody.angularDrag += 0.5f;
         }
