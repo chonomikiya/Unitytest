@@ -14,13 +14,15 @@ public class bossWeapongenerater : MonoBehaviour
     GameObject missilePrefab = null;
     GameObject GatlingRight = null;
     GameObject GatlingLeft = null;
+    [SerializeField]
+    GameObject BossHpSlider = null;
     ParticleSystem m_particleRight = null;
     ParticleSystem m_particleLeft = null;
     bool switchAttack = false;
     int acttimer = 0;
     [SerializeField]
     int  threshold = 500;
-    int bossHP = 100;
+    public float bossHP = 100;
     Rigidbody m_rigidbody = null;
     // Start is called before the first frame update
     void Start()
@@ -42,10 +44,12 @@ public class bossWeapongenerater : MonoBehaviour
     
     void OnParticleCollision(GameObject other) {
         bossHP--;
+        BossHpSlider.GetComponent<HPbarCtl>().BossHPPull();
         Debug.Log(bossHP);
         if(bossHP <0){
             state = State.broken;
         }
+
     }
     // Update is called once per frame
     void Update()

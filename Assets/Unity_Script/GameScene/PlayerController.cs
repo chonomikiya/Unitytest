@@ -97,14 +97,14 @@ public class PlayerController : MonoBehaviour
     void falldown(){
 
         float x = -1;
-        float y = -0.3f;
+        float y = -1;
         
         // xとyにspeedを掛ける
-        rigidbody.AddRelativeForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
+        rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
 
         Vector3 moveVector = Vector3.zero;
 
-        rigidbody.AddRelativeForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
+        rigidbody.AddForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
         
         this.rigidbody.drag = 2;
 
@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
         Camera.main.GetComponent<CameraController>().isBroken();
         state = State.broken;
         BOMB.GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,2);
-        // rigidbody.AddForce(Vector3.down * 1000);
-        // rigidbody.AddForce(Vector3.left * 1000);
+        rigidbody.AddForce(Vector3.down * 1000);
+        rigidbody.AddForce(Vector3.left * 1000);
     }
 }
