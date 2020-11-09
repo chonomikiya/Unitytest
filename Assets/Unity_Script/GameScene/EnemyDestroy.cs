@@ -22,6 +22,7 @@ public class EnemyDestroy : MonoBehaviour
     {
         if(Damage > 2){
             Destroy(this.gameObject);
+            GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,2);
         }
     }
 }

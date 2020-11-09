@@ -4755,7 +4755,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8077,9 +8077,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -8259,7 +8259,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9290,7 +9290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeTimer: 0
-  releaseWeapon: 2000
+  releaseWeapon: {x: 0, y: 0, z: 2000}
+  forceWeapon: 0
 --- !u!54 &5816495858497760540
 Rigidbody:
   m_ObjectHideFlags: 0

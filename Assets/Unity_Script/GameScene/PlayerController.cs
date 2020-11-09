@@ -33,14 +33,21 @@ public class PlayerController : MonoBehaviour
     public bool rb_freezepos_top = false;
     public bool rb_freezepos_bottom = false;
     bool vsBoss = false;
+    int bombCount = 20;
     [SerializeField]
     GameObject _Slider = null;
+    [SerializeField]
+    GameObject BOMB = null;
+
+
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Enemy")){
             _Slider.GetComponent<HPbarCtl>().HPpull(5);
         }
         if(other.gameObject.CompareTag("Terrain") && state == State.broken){
+            BOMB.GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,3);
             GameObject.Find("SceneManager").GetComponent<GameSceneDirector>().LoadGameOver();
+            
         }
     }
     private void OnParticleCollision(GameObject other) {
@@ -83,20 +90,21 @@ public class PlayerController : MonoBehaviour
                 move();
                 break;
             case State.broken:
-                
+                falldown();
                 break;
         }
     }
     void falldown(){
-         float x = 0;
-        float y = 0;
+
+        float x = -1;
+        float y = -0.3f;
         
         // xとyにspeedを掛ける
-        rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
+        rigidbody.AddRelativeForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
 
         Vector3 moveVector = Vector3.zero;
 
-        rigidbody.AddForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
+        rigidbody.AddRelativeForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
         
         this.rigidbody.drag = 2;
 
@@ -185,10 +193,11 @@ public class PlayerController : MonoBehaviour
     }
     public void fall(){
         rigidbody.useGravity = true;
-        rigidbody.angularDrag = 0;
+        rigidbody.angularDrag = 1;
         Camera.main.GetComponent<CameraController>().isBroken();
         state = State.broken;
-        rigidbody.AddForce(Vector3.down * 1000);
-        rigidbody.AddForce(Vector3.left * 1000);
+        BOMB.GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,2);
+        // rigidbody.AddForce(Vector3.down * 1000);
+        // rigidbody.AddForce(Vector3.left * 1000);
     }
 }

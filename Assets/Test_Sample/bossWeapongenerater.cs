@@ -20,7 +20,7 @@ public class bossWeapongenerater : MonoBehaviour
     int acttimer = 0;
     [SerializeField]
     int  threshold = 500;
-    int bossHP = 30;
+    int bossHP = 100;
     Rigidbody m_rigidbody = null;
     // Start is called before the first frame update
     void Start()
@@ -34,8 +34,9 @@ public class bossWeapongenerater : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("Terrain")){
-            
+        if((other.gameObject.CompareTag("Terrain")) && (state == State.broken)){
+            GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,3);
+            Destroy(this.gameObject);
         }
     }
     
@@ -85,7 +86,8 @@ public class bossWeapongenerater : MonoBehaviour
                 break;
             case State.broken:
                 m_rigidbody.useGravity = true;
-                m_rigidbody.AddForce(0,-100,0);
+                m_rigidbody.AddForce(0,-20,0);
+                m_rigidbody.AddTorque(2,20,0);
                 break;
         }
         acttimer++;
