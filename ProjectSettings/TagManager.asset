@@ -12,6 +12,7 @@ TagManager:
   - ReticleTarget
   - Bullet_Fire
   - BossBattle
+  - Terrain
   layers:
   - Default
   - TransparentFX

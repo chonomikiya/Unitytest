@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    enum State {
+        move,broken
+    }
+    State state;
     // speedを制御する
     public float movespeed = 10.0f;
     private const float speed = 20;
@@ -29,7 +33,21 @@ public class PlayerController : MonoBehaviour
     public bool rb_freezepos_top = false;
     public bool rb_freezepos_bottom = false;
     bool vsBoss = false;
-
+    [SerializeField]
+    GameObject _Slider = null;
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Enemy")){
+            _Slider.GetComponent<HPbarCtl>().HPpull(5);
+        }
+        if(other.gameObject.CompareTag("Terrain") && state == State.broken){
+            GameObject.Find("SceneManager").GetComponent<GameSceneDirector>().LoadGameOver();
+        }
+    }
+    private void OnParticleCollision(GameObject other) {
+        if(other.CompareTag("Enemy")){
+            _Slider.GetComponent<HPbarCtl>().HPpull(1);
+        }
+    }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "camera_limit_left" ){
             rb_freezepos_left = true;
@@ -55,13 +73,49 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         // バネ復元力でゆらゆら揺れ続けるのを防ぐため、angularDragを大きめにしておく
         rigidbody.angularDrag = 20.0f;
+        state = State.move;
     }
 
     void FixedUpdate()
     {
-        if(vsBoss&&this.transform.position.z < 560){
+        switch(state){
+            case State.move:
+                move();
+                break;
+            case State.broken:
+                
+                break;
+        }
+    }
+    void falldown(){
+         float x = 0;
+        float y = 0;
+        
+        // xとyにspeedを掛ける
+        rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
+
+        Vector3 moveVector = Vector3.zero;
+
+        rigidbody.AddForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
+        
+        this.rigidbody.drag = 2;
+
+        // プレイヤーの入力に応じて姿勢をひねろうとするトルク
+        Vector3 rotationTorque = new Vector3(-y * pitchTorqueMagnitude, x * yawTorqueMagnitude, -x * rollTorqueMagnitude);
+
+        // 現在の姿勢のずれに比例した大きさで逆方向にひねろうとするトルク
+        Vector3 right = transform.right;
+        Vector3 up = transform.up;
+        Vector3 forward = transform.forward;
+        Vector3 restoringTorque = new Vector3(forward.y - up.z, right.z - forward.x, up.x - right.y) * restoringTorqueMagnitude;
+
+        // 機体にトルクを加える
+        rigidbody.AddTorque(rotationTorque + restoringTorque);
+    }
+    void move(){
+        if(vsBoss&&this.transform.position.z < 550){
             movespeed = 10f;
-        }else if(vsBoss&&this.transform.position.z > 560){
+        }else if(vsBoss&&this.transform.position.z > 550){
             movespeed = 0;
         }
 
@@ -127,5 +181,14 @@ public class PlayerController : MonoBehaviour
     }
     public void Damage(){
         rigidbody.angularDrag /= 2;
+        _Slider.GetComponent<HPbarCtl>().HPpull(3);
+    }
+    public void fall(){
+        rigidbody.useGravity = true;
+        rigidbody.angularDrag = 0;
+        Camera.main.GetComponent<CameraController>().isBroken();
+        state = State.broken;
+        rigidbody.AddForce(Vector3.down * 1000);
+        rigidbody.AddForce(Vector3.left * 1000);
     }
 }

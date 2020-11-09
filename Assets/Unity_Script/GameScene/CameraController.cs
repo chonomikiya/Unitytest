@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     enum State {
-        chase,bossbattle
+        chase,bossbattle,broken
     }
     State state;
     public float offset = -10.0f;
@@ -16,7 +16,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         state = State.chase;
-
     }
 
     // Update is called once per frame
@@ -29,16 +28,25 @@ public class CameraController : MonoBehaviour
                 transform.position = pos;
                 break;
             case State.bossbattle:
-                    if(this.transform.position.y < 20){
-                        this.transform.Translate(0f,0.1f,0f);
-                        player.transform.Translate(0f,0.1f,0f);
-                    }
+                if(this.transform.position.y < 20){
+                    this.transform.Translate(0f,0.1f,0f);
+                    player.transform.Translate(0f,0.1f,0f);
+                }
+                pos = transform.position;
+                pos.z = player.position.z + offset;
+                transform.position = pos;
+                break;
+            case State.broken:
+            this.transform.LookAt(player.transform);
                 pos = transform.position;
                 pos.z = player.position.z + offset;
                 transform.position = pos;
                 break;
         }
         
+    }
+    public void isBroken(){
+        state = State.broken;
     }
     public void camera_state_change(){
         state = State.bossbattle;

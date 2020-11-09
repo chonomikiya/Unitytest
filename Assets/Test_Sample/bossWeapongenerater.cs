@@ -6,8 +6,8 @@ using UnityEngine;
 public class bossWeapongenerater : MonoBehaviour
 {
     enum State {
-    stay,missile,gatling,longDistance
-};
+    stay,missile,gatling,longDistance,broken
+    }
     State state;
     GameObject target = null;
     [SerializeField]
@@ -21,8 +21,7 @@ public class bossWeapongenerater : MonoBehaviour
     [SerializeField]
     int  threshold = 500;
     int bossHP = 30;
-    [SerializeField]
-    Vector3 offset = new Vector3(0,0,0);
+    Rigidbody m_rigidbody = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +31,20 @@ public class bossWeapongenerater : MonoBehaviour
         m_particleRight = GatlingRight.GetComponentInChildren<ParticleSystem>();
         GatlingLeft = transform.GetChild(2).gameObject;
         m_particleLeft = GatlingLeft.GetComponentInChildren<ParticleSystem>();
+        m_rigidbody = GetComponent<Rigidbody>();
+    }
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Terrain")){
+            
+        }
     }
     
     void OnParticleCollision(GameObject other) {
         bossHP--;
-        Debug.Log("bossHP--");
+        Debug.Log(bossHP);
+        if(bossHP <0){
+            state = State.broken;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -61,7 +69,6 @@ public class bossWeapongenerater : MonoBehaviour
                 break;
             case State.missile:
                     acttimer = 0;
-                    // switchAttack = !switchAttack;
                     state = State.stay;
                     missile();
                     Debug.Log("State.missile:");
@@ -75,6 +82,10 @@ public class bossWeapongenerater : MonoBehaviour
                 }
                 break;
             case State.longDistance:
+                break;
+            case State.broken:
+                m_rigidbody.useGravity = true;
+                m_rigidbody.AddForce(0,-100,0);
                 break;
         }
         acttimer++;
