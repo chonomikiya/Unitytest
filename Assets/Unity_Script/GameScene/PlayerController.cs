@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     GameObject _Slider = null;
     [SerializeField]
     GameObject BOMB = null;
-
+    float upspeed = 2;
 
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Enemy")){
@@ -93,17 +93,19 @@ public class PlayerController : MonoBehaviour
                 falldown();
                 break;
             case State.gameclear:
+                goUP();
                 break;
         }
     }
     void goUP(){
-
+        upspeed += 2;
+        if(upspeed >100) upspeed = 100;
         float x = 0;
         float y = 1;
         float z = 1;
         
         // xとyにspeedを掛ける
-        rigidbody.AddForce(0, y * 400, z * 400);
+        rigidbody.AddForce(0, y * upspeed , z * (upspeed/2));
 
         Vector3 moveVector = Vector3.zero;
 
@@ -129,7 +131,7 @@ public class PlayerController : MonoBehaviour
     }
     void falldown(){
         float x = -1;
-        float y = -2;
+        float y = -5;
         
         // xとyにspeedを掛ける
         rigidbody.AddForce(x * speed, y * speed, movespeed);

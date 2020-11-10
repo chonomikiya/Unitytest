@@ -5,12 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     enum State {
-        chase,bossbattle,broken,gameclear
+        chase,bossbattle,broken,gameclear,stay
     }
     State state;
     public float offset = -10.0f;
     [SerializeField]
     private Transform player = null;
+    float count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    private void FixedUpdate() {
         switch(state){
             case State.chase:
                 Vector3 pos = transform.position;
@@ -29,8 +29,8 @@ public class CameraController : MonoBehaviour
                 break;
             case State.bossbattle:
                 if(this.transform.position.y < 20){
-                    this.transform.Translate(0f,0.1f,0f);
-                    player.transform.Translate(0f,0.1f,0f);
+                    this.transform.Translate(0f,0.05f,0f);
+                    player.transform.Translate(0f,0.05f,0f);
                 }
                 pos = transform.position;
                 pos.z = player.position.z + offset;
@@ -44,7 +44,20 @@ public class CameraController : MonoBehaviour
                 break;
             case State.gameclear:
                 this.transform.LookAt(player.transform);
-                this.transform.Translate(0.1f,0f,0.1f);
+                if(count < 100){
+                    this.transform.Translate(0.05f,0f,0.05f);
+                    count++;
+                }else{
+                    player.GetComponent<PlayerController>().isGameClear();
+                    state = State.stay;
+                }
+                break;
+            case State.stay:
+                this.transform.LookAt(player.transform);
+                if(Vector3.Distance(this.transform.position,player.transform.position) > 200){
+                    GameObject.FindWithTag("SceneManager").GetComponent<GameSceneDirector>().LoadGameClear();
+
+                }
                 break;
         }
         
