@@ -9,6 +9,7 @@ public class CannonMachineController : MonoBehaviour
     GameObject target = null;
     GameObject laser = null;
     LineRenderer lineRenderer = null;
+    AudioSource shootSE = null;
     bool Attack = false;
     SphereCollider sphereCollider;
 
@@ -23,6 +24,7 @@ public class CannonMachineController : MonoBehaviour
         sphereCollider = GetComponentInParent<SphereCollider>();
         lineRenderer = GetComponentInChildren<LineRenderer>();
         lineRenderer.enabled = false;
+        shootSE = GetComponent<AudioSource>();
     }
     void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player")){
@@ -49,7 +51,7 @@ public class CannonMachineController : MonoBehaviour
         ParticleSystem muzzleflash;
         muzzleflash = this.GetComponentInChildren<ParticleSystem>();
         muzzleflash.Play();
-        
+        shootSE.Play();
     }
     // Update is called once per frame
     void Update()

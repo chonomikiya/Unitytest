@@ -48,5 +48,8 @@ public class AircraftControl : MonoBehaviour
         if(Damage> 1){
             Destroy(this.gameObject);
         }
+        if(this.transform.position.z <Camera.main.transform.position.z -20){
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -25,26 +25,24 @@ public class GatlingGun : MonoBehaviour
 
     // Used to start and stop the turret firing
     bool canFire = false;
-
-    
+    [SerializeField]
+    AudioSource gatlingSE = null;    
     void Start()
     {
         // Set the firing range distance
         this.GetComponent<SphereCollider>().radius = firingRange;
+        gatlingSE = GetComponent<AudioSource>();
     }
-
     void Update()
     {
         AimAndFire();
     }
-
     void OnDrawGizmosSelected()
     {
         // Draw a red sphere at the transform's position to show the firing range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, firingRange);
     }
-
     // // Detect an Enemy, aim and fire
     // void OnTriggerEnter(Collider other)
     // {
@@ -69,9 +67,11 @@ public class GatlingGun : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Z)){
             canFire = true;
+            gatlingSE.Play();
         }
         if(Input.GetKeyUp(KeyCode.Z)){
             canFire = false;
+            gatlingSE.Stop();
         }
         // Gun barrel rotation
         go_barrel.transform.Rotate(0, 0, currentRotationSpeed * Time.deltaTime);

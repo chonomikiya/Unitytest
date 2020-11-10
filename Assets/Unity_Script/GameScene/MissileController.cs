@@ -16,6 +16,11 @@ public class MissileController : MonoBehaviour
     Vector3 addforce;
     State state;
 
+    private void OnCollisionEnter(Collision other) {
+        GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>()
+        .Detonation(this.transform.position,2);
+        Destroy(this.gameObject);
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -45,17 +50,16 @@ public class MissileController : MonoBehaviour
                 }
                 break;
             case State.move:
-                m_rigidbody.AddRelativeForce(Vector3.forward *thurust);                
+                m_rigidbody.AddRelativeForce(Vector3.forward *thurust);
+                if(this.transform.position.z < Camera.main.transform.position.z -20){
+                    state = State.delete;
+                }
                 break;
             case State.delete:
                 Destroy(this.gameObject);
                 break;
         }
 
-    }
-    private IEnumerator statectl(){
-        yield return new WaitForSeconds(5);
-        state = State.delete;
     }
     public void Fire(Rigidbody parent){
         target = GameObject.Find("Player");

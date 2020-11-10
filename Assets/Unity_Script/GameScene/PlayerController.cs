@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     enum State {
-        move,broken
+        move,broken,gameclear
     }
     State state;
     // speedを制御する
@@ -92,15 +92,47 @@ public class PlayerController : MonoBehaviour
             case State.broken:
                 falldown();
                 break;
+            case State.gameclear:
+                break;
         }
     }
-    void falldown(){
+    void goUP(){
 
-        float x = -1;
-        float y = -1;
+        float x = 0;
+        float y = 1;
+        float z = 1;
         
         // xとyにspeedを掛ける
-        rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), movespeed);
+        rigidbody.AddForce(0, y * 400, z * 400);
+
+        Vector3 moveVector = Vector3.zero;
+
+        rigidbody.AddForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
+        
+        this.rigidbody.drag = 2;
+
+        // プレイヤーの入力に応じて姿勢をひねろうとするトルク
+        Vector3 rotationTorque = new Vector3(-y * pitchTorqueMagnitude, x * yawTorqueMagnitude, -x * rollTorqueMagnitude);
+
+        // 現在の姿勢のずれに比例した大きさで逆方向にひねろうとするトルク
+        Vector3 right = transform.right;
+        Vector3 up = transform.up;
+        Vector3 forward = transform.forward;
+        Vector3 restoringTorque = new Vector3(forward.y - up.z, right.z - forward.x, up.x - right.y) * restoringTorqueMagnitude;
+
+        // 機体にトルクを加える
+        rigidbody.AddTorque(rotationTorque + restoringTorque);
+    
+    }
+    public void isGameClear(){
+        state = State.gameclear;
+    }
+    void falldown(){
+        float x = -1;
+        float y = -2;
+        
+        // xとyにspeedを掛ける
+        rigidbody.AddForce(x * speed, y * speed, movespeed);
 
         Vector3 moveVector = Vector3.zero;
 
@@ -126,7 +158,6 @@ public class PlayerController : MonoBehaviour
         }else if(vsBoss&&this.transform.position.z > 550){
             movespeed = 0;
         }
-
         if(rigidbody.angularDrag < 20.0f){
             rigidbody.angularDrag += 0.5f;
         }

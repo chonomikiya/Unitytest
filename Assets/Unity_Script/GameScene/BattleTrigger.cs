@@ -7,11 +7,14 @@ public class BattleTrigger : MonoBehaviour
     GameObject bossEnemy;
     [SerializeField]
     GameObject _HPbarCtl = null;
+    [SerializeField]
+    GameObject BGMCtl = null;
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Player")){
             bossEnemy.GetComponent<bossWeapongenerater>().Battle();
             Camera.main.GetComponent<CameraController>().camera_state_change();
             _HPbarCtl.GetComponent<HPbarCtl>().BossHPbarappear();
+            BGMCtl.GetComponent<BGMCtl>().bossBGMPlay();
         }
     }
     // Start is called before the first frame update
@@ -19,6 +22,4 @@ public class BattleTrigger : MonoBehaviour
     {
         bossEnemy = GameObject.Find("SF_Free-Fighter").gameObject;
     }
-
-
 }

@@ -14,7 +14,11 @@ public class BossMissileControl : MonoBehaviour
     [SerializeField]
     Vector3 addforce;
     State state;
-
+    private void OnCollisionEnter(Collision other) {
+        GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>()
+        .Detonation(this.transform.position,2);
+        Destroy(this.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()

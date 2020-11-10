@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     enum State {
-        chase,bossbattle,broken
+        chase,bossbattle,broken,gameclear
     }
     State state;
     public float offset = -10.0f;
@@ -37,13 +37,20 @@ public class CameraController : MonoBehaviour
                 transform.position = pos;
                 break;
             case State.broken:
-            this.transform.LookAt(player.transform);
+                this.transform.LookAt(player.transform);
                 pos = transform.position;
                 pos.z = player.position.z + offset;
                 transform.position = pos;
                 break;
+            case State.gameclear:
+                this.transform.LookAt(player.transform);
+                this.transform.Translate(0.1f,0f,0.1f);
+                break;
         }
         
+    }
+    public void isClear(){
+        state = State.gameclear;
     }
     public void isBroken(){
         state = State.broken;

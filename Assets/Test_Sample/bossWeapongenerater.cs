@@ -38,7 +38,9 @@ public class bossWeapongenerater : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if((other.gameObject.CompareTag("Terrain")) && (state == State.broken)){
             GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,3);
+            GameObject.FindWithTag("SceneManager").GetComponent<GameSceneDirector>().BossDefeat();
             Destroy(this.gameObject);
+
         }
     }
     
