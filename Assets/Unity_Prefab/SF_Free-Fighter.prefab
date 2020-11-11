@@ -10340,7 +10340,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 40
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15182,7 +15182,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 40
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -20004,7 +20004,6 @@ GameObject:
   - component: {fileID: 2962290343843765256}
   - component: {fileID: 2962290343014842456}
   - component: {fileID: 2962290343014842457}
-  - component: {fileID: 2962290343014842454}
   m_Layer: 0
   m_Name: SF_Free-Fighter
   m_TagString: Untagged
@@ -20106,27 +20105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 5836254532553166609, guid: 47093d4cee653493ba5f64b1309f6417,
     type: 3}
+  BossHpSlider: {fileID: 0}
   threshold: 500
-  offset: {x: 0, y: 0, z: 0}
---- !u!114 &2962290343014842454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2962290343841759944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a8e35e8ccc54e14a9f0dd9d2c9c4e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movespeed: 10
-  speedCtl: 0
-  moveForceMultiplier: 0
-  yawTorqueMagnitude: 60
-  pitchTorqueMagnitude: 40
-  rollTorqueMagnitude: 30
-  restoringTorqueMagnitude: 50
+  bossHP: 100
 --- !u!1 &2962290344060529198
 GameObject:
   m_ObjectHideFlags: 0

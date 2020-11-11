@@ -14,7 +14,6 @@ public class EnergyWeaponDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         myRBody = GetComponentInParent<Rigidbody>();
         // myCollider = GetComponent<SphereCollider>();
     }
@@ -36,6 +35,7 @@ public class EnergyWeaponDirector : MonoBehaviour
         }
     }
     public void fireWeapon(){
+        myRBody = GetComponentInParent<Rigidbody>();
         // myCollider.enabled = !myCollider.enabled;
         chargeTimer = false;
         // float dis = Vector3.Distance(transform.position,GameObject.Find("ReticleTarget").transform.position);

@@ -17,6 +17,7 @@ public class BattleTrigger : MonoBehaviour
             BGMCtl.GetComponent<BGMCtl>().bossBGMPlay();
         }
     }
+    
     // Start is called before the first frame update
     void Start()
     {

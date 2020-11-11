@@ -21,20 +21,20 @@ public class BossEnemyControl : MonoBehaviour
 
     // バネのように姿勢を元に戻すトルク100.0f
     public float restoringTorqueMagnitude = 50.0f;
-    private new Rigidbody rigidbody;
+    private Rigidbody m_rigidbody;
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        m_rigidbody = GetComponent<Rigidbody>();
         // バネ復元力でゆらゆら揺れ続けるのを防ぐため、angularDragを大きめにしておく
-        rigidbody.angularDrag = 20.0f;
+        m_rigidbody.angularDrag = 20.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(rigidbody.angularDrag < 20.0f){
-            rigidbody.angularDrag += 0.5f;
+        if(m_rigidbody.angularDrag < 20.0f){
+            m_rigidbody.angularDrag += 0.5f;
         }
         if(Input.GetKey(KeyCode.LeftShift))
         {
@@ -46,13 +46,13 @@ public class BossEnemyControl : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         
         // xとyにspeedを掛ける
-        rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), 0);
+        m_rigidbody.AddForce(x * (speed - speedCtl), y * (speed - speedCtl), 0);
 
         Vector3 moveVector = Vector3.zero;
 
-        rigidbody.AddForce(moveForceMultiplier * (moveVector - rigidbody.velocity));
+        m_rigidbody.AddForce(moveForceMultiplier * (moveVector - m_rigidbody.velocity));
         
-        this.rigidbody.drag = 2;
+        this.m_rigidbody.drag = 2;
 
         // プレイヤーの入力に応じて姿勢をひねろうとするトルク
         Vector3 rotationTorque = new Vector3(-y * pitchTorqueMagnitude, x * yawTorqueMagnitude, -x * rollTorqueMagnitude);
@@ -64,6 +64,6 @@ public class BossEnemyControl : MonoBehaviour
         Vector3 restoringTorque = new Vector3(forward.y - up.z, right.z - forward.x, up.x - right.y) * restoringTorqueMagnitude;
 
         // 機体にトルクを加える
-        rigidbody.AddTorque(rotationTorque + restoringTorque);
+        m_rigidbody.AddTorque(rotationTorque + restoringTorque);
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneDirector : MonoBehaviour
 {
-    [SerializeField]
-    GameObject player = null;
+
     public void LoadGameOver(){
         SceneManager.LoadScene("GameOverScene");
     }
@@ -15,7 +14,6 @@ public class GameSceneDirector : MonoBehaviour
     }
     public void BossDefeat(){
         Camera.main.GetComponent<CameraController>().isClear();
-        // player.GetComponent<PlayerController>().isGameClear();
     }
     // Start is called before the first frame update
     void Start()

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CameraController : MonoBehaviour
 {
     enum State {
@@ -29,8 +28,8 @@ public class CameraController : MonoBehaviour
                 break;
             case State.bossbattle:
                 if(this.transform.position.y < 20){
-                    this.transform.Translate(0f,0.05f,0f);
-                    player.transform.Translate(0f,0.05f,0f);
+                    this.transform.Translate(0f,0.01f,0f);
+                    player.transform.Translate(0f,0.01f,0f);
                 }
                 pos = transform.position;
                 pos.z = player.position.z + offset;
@@ -54,7 +53,7 @@ public class CameraController : MonoBehaviour
                 break;
             case State.stay:
                 this.transform.LookAt(player.transform);
-                if(Vector3.Distance(this.transform.position,player.transform.position) > 200){
+                if(Vector3.Distance(this.transform.position,player.transform.position) > 100){
                     GameObject.FindWithTag("SceneManager").GetComponent<GameSceneDirector>().LoadGameClear();
 
                 }

@@ -10566,6 +10566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missileprefab: {fileID: 1294391414826888899, guid: f13f77375bdbc48f4ab78712c54b84a3,
     type: 3}
+  BOMBPrefab: {fileID: 100000, guid: 67e5b9f09995840449c988b145cc1d7b, type: 3}
 --- !u!1 &8216041209996702913
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class GameOverScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyUp(KeyCode.Z))
         {
             SceneManager.LoadScene("TitleScene");
         }

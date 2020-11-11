@@ -12,8 +12,6 @@ public class MissileController : MonoBehaviour
     Rigidbody m_rigidbody;
     [SerializeField]
     float thurust = 500.0f;
-    [SerializeField]
-    Vector3 addforce;
     State state;
 
     private void OnCollisionEnter(Collision other) {
@@ -69,6 +67,6 @@ public class MissileController : MonoBehaviour
         state = State.search;
         this.transform.LookAt(target.transform);
         // m_rigidbody.velocity = addforce;
-        m_rigidbody.AddRelativeForce(addforce);
+
     }
 }

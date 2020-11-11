@@ -21,7 +21,7 @@ public class bossWeapongenerater : MonoBehaviour
     bool switchAttack = false;
     int acttimer = 0;
     [SerializeField]
-    int  threshold = 500;
+    int  threshold = 400;
     public float bossHP = 100;
     Rigidbody m_rigidbody = null;
     // Start is called before the first frame update

@@ -13,6 +13,8 @@ public class AircraftControl : MonoBehaviour
     [SerializeField]
     GameObject missileprefab = null;
     Vector3 m_position;
+    [SerializeField]
+    GameObject BOMBPrefab = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,8 @@ public class AircraftControl : MonoBehaviour
 
     }
     private void OnParticleCollision(GameObject other) {
-                    Destroy(this.gameObject);
+        GameObject BOMBeffect = Instantiate(BOMBPrefab,this.transform.position,this.transform.rotation) as GameObject;
+        Destroy(this.gameObject);
     }
     // Update is called once per frame
     void Update()
@@ -46,6 +49,7 @@ public class AircraftControl : MonoBehaviour
             m_rigidbody.AddRelativeForce(Vector3.up * 1000);
         }
         if(Damage> 1){
+            GameObject BOMBeffect = Instantiate(BOMBPrefab,this.transform.position,this.transform.rotation) as GameObject;
             Destroy(this.gameObject);
         }
         if(this.transform.position.z <Camera.main.transform.position.z -20){
