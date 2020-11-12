@@ -1649,18 +1649,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &538735016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 16458567987569399}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d23a89b395341e5b8f4a2c14518d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &641411590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,7 +1736,7 @@ GameObject:
   - component: {fileID: 659956641}
   m_Layer: 0
   m_Name: BGMstopTrigger
-  m_TagString: Untagged
+  m_TagString: stageBGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1762,9 +1750,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 659956640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76c9140d16cb4133b8b0deac668d57f, type: 3}
+  m_Script: {fileID: 11500000, guid: bd2c63f631be7f69f8c6ad921a47e4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _HPbarCtl: {fileID: 331309801}
   BGMCtl: {fileID: 1818240729}
 --- !u!65 &659956642
 BoxCollider:
@@ -1866,7 +1855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf985fe37a61b4b11a7ef7abff8c0659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1488094753089873}
 --- !u!4 &786544634
 Transform:
   m_ObjectHideFlags: 0
@@ -8735,7 +8723,6 @@ GameObject:
   - component: {fileID: 13893635818471127}
   - component: {fileID: 215969189915995155}
   - component: {fileID: 215345485502835027}
-  - component: {fileID: 538735016}
   m_Layer: 0
   m_Name: MuzzelFlash_ParticleSystem
   m_TagString: Player

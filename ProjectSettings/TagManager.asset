@@ -16,6 +16,7 @@ TagManager:
   - BOMB
   - Boss
   - SceneManager
+  - stageBGM
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Playerの移動処理20201112
 public class PlayerController : MonoBehaviour
 {
     enum State {
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     GameObject BOMB = null;
     float upspeed = 2;
 
+    //敵の攻撃に当たったらHPを減らす
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Enemy")){
             _Slider.GetComponent<HPbarCtl>().HPpull(5);
@@ -46,7 +47,6 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("Terrain") && state == State.broken){
             BOMB.GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,3);
             GameObject.Find("SceneManager").GetComponent<GameSceneDirector>().LoadGameOver();
-            
         }
     }
     private void OnParticleCollision(GameObject other) {
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
             _Slider.GetComponent<HPbarCtl>().HPpull(1);
         }
     }
+    //Playerがカメラの範囲外に出ないようにする
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "camera_limit_left" ){
             rb_freezepos_left = true;
@@ -72,7 +73,6 @@ public class PlayerController : MonoBehaviour
             vsBoss = true;
         }
     }
-
     
     void Awake()
     {
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    //bossを倒した時にお空へ向かって旅立つ
     void goUP(){
         upspeed += 2;
         if(upspeed >100) upspeed = 100;
@@ -123,11 +124,11 @@ public class PlayerController : MonoBehaviour
 
         // 機体にトルクを加える
         rigidbody.AddTorque(rotationTorque + restoringTorque);
-    
     }
     public void isGameClear(){
         state = State.gameclear;
     }
+    //HPが０になったら地面に落ちる
     void falldown(){
         float x = -1;
         float y = -1;
@@ -153,6 +154,7 @@ public class PlayerController : MonoBehaviour
         // 機体にトルクを加える
         rigidbody.AddTorque(rotationTorque + restoringTorque);
     }
+    //道中の画面内の移動
     void move(){
         if(vsBoss&&this.transform.position.z < 550){
             movespeed = 10f;
@@ -193,7 +195,7 @@ public class PlayerController : MonoBehaviour
         // 機体にトルクを加える
         rigidbody.AddTorque(rotationTorque + restoringTorque);
     }
-
+    //画面から出れないようにX軸Y軸を固定
     void NotOffScreen(){
         if(rb_freezepos_top || rb_freezepos_bottom){
             rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
@@ -223,13 +225,13 @@ public class PlayerController : MonoBehaviour
         rigidbody.angularDrag /= 2;
         _Slider.GetComponent<HPbarCtl>().HPpull(3);
     }
+    //HPが０になった時呼び出す
     public void fall(){
         rigidbody.useGravity = true;
         rigidbody.angularDrag = 1;
         Camera.main.GetComponent<CameraController>().isBroken();
         state = State.broken;
         BOMB.GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,2);
-        // rigidbody.AddForce(Vector3.down * 1000);
         rigidbody.velocity += new Vector3(0,-2,0);
     }
 }

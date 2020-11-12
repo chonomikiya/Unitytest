@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//テストに使ったボスのmove処理20201112
+//処分
 public class BossEnemyControl : MonoBehaviour
 {
     // speedを制御する

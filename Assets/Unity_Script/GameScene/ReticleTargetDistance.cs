@@ -1,15 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//Reticleを表示する箇所を決める20201112
 
 public class ReticleTargetDistance : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

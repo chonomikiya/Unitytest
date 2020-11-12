@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Sceneの管理用20201112
 public class GameSceneDirector : MonoBehaviour
 {
-
     public void LoadGameOver(){
         SceneManager.LoadScene("GameOverScene");
     }
@@ -14,16 +14,5 @@ public class GameSceneDirector : MonoBehaviour
     }
     public void BossDefeat(){
         Camera.main.GetComponent<CameraController>().isClear();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

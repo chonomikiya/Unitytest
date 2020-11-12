@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//ボスの攻撃の処理20201112
+//bossの行動も兼ねているのでリネーム対象
 
 public class bossWeapongenerater : MonoBehaviour
 {
@@ -35,6 +37,7 @@ public class bossWeapongenerater : MonoBehaviour
         m_particleLeft = GatlingLeft.GetComponentInChildren<ParticleSystem>();
         m_rigidbody = GetComponent<Rigidbody>();
     }
+    //ボスが倒された後地面に当たった時の処理
     private void OnCollisionEnter(Collision other) {
         if((other.gameObject.CompareTag("Terrain")) && (state == State.broken)){
             GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>().Detonation(this.transform.position,3);
@@ -43,7 +46,7 @@ public class bossWeapongenerater : MonoBehaviour
 
         }
     }
-    
+    //Playerの攻撃の当たり判定を受け取る処理
     void OnParticleCollision(GameObject other) {
         bossHP--;
         BossHpSlider.GetComponent<HPbarCtl>().BossHPPull();
@@ -56,9 +59,11 @@ public class bossWeapongenerater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //GatlingをPlayerに向ける
         GatlingLeft.transform.LookAt(target.transform.position);
         GatlingRight.transform.LookAt(target.transform.position);
         switch(state){
+            //一定時間待機した後にState.missileまたはState.gatlingへ移行
             case State.stay:
                 if(acttimer > threshold){
                     acttimer = 0;
@@ -74,12 +79,13 @@ public class bossWeapongenerater : MonoBehaviour
                     }
                 }
                 break;
+            //ミサイルのインスタンスを起こしてState.stayへ
             case State.missile:
                     acttimer = 0;
                     state = State.stay;
                     missile();
-                    Debug.Log("State.missile:");
                 break;
+            //一定時間gatlingを再生して後State.stayへ
             case State.gatling:
                 if(acttimer > threshold){
                     m_particleRight.Stop();
@@ -88,8 +94,10 @@ public class bossWeapongenerater : MonoBehaviour
                     state = State.stay;
                 }
                 break;
+            //初期の状態
             case State.longDistance:
                 break;
+            //自身のHPが０になった場合に移行
             case State.broken:
                 m_rigidbody.useGravity = true;
                 m_rigidbody.AddForce(0,-20,0);
@@ -98,6 +106,7 @@ public class bossWeapongenerater : MonoBehaviour
         }
         acttimer++;
     }
+    
     public void Battle(){
         state = State.stay;
     }
@@ -109,7 +118,6 @@ public class bossWeapongenerater : MonoBehaviour
         missile.GetComponent<BossMissileControl>().Fire();
     }
     private void gatling(){
-        
         GatlingLeft.GetComponentInChildren<ParticleSystem>().Play();
         GatlingRight.GetComponentInChildren<ParticleSystem>().Play();
     }

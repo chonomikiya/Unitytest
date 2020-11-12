@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//UIのkeyの処理、リファクタリング対象20201112
+
 public class key_help : MonoBehaviour
 {
     Color input_color = new Color (169/255.0f,169/255.0f,169/255.0f);
@@ -22,9 +24,7 @@ public class key_help : MonoBehaviour
     [SerializeField]
     GameObject arrow_right = null;
     Vector3 offset = new Vector3(0,1f,0);
-    private void Start() {
-        
-    }
+    //それぞれの処理
     private void Update() {
         if(Input.GetKeyDown(KeyCode.LeftShift)){
             siftctl.GetComponent<Image>().color = input_color;

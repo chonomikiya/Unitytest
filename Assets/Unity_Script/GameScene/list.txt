@@ -1,6 +1,5 @@
 AircraftControl.cs
 BGMCtl.cs
-BGMstopTrigger.cs
 BOMBeffectCtl.cs
 BattleTrigger.cs
 BossEnemyControl.cs
@@ -16,8 +15,6 @@ EnergyWeaponGenerater.cs
 FlyMachineContrroller.cs
 GameSceneDirector.cs
 HPbarCtl.cs
-LaserDistance.cs
-LookReticle.cs
 MissileController.cs
 PlayerController.cs
 ReticleTargetDistance.cs
@@ -25,6 +22,5 @@ ReticleUI.cs
 bossWeapongenerater.cs
 camera_test.cs
 key_help.cs
-moveController.cs
 move_test.cs
 popEnemy.cs

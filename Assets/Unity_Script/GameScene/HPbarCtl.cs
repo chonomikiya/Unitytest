@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//PlayerとBossのHPバーの処理20201112
 public class HPbarCtl : MonoBehaviour
 {
     Slider _slider;
@@ -21,7 +22,6 @@ public class HPbarCtl : MonoBehaviour
         _bossHP = bossObject.GetComponent<bossWeapongenerater>().bossHP;
         _bossSlider = GameObject.Find("BossSlider").GetComponent<Slider>();
     }
-
     public void HPpull(int damage){
         _hp -= damage;
         if(_hp < 0){

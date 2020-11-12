@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//戦闘機のミサイルの管理20201112
 
 public class MissileController : MonoBehaviour
 {
@@ -13,19 +14,11 @@ public class MissileController : MonoBehaviour
     [SerializeField]
     float thurust = 500.0f;
     State state;
-
+    //当たったら爆発
     private void OnCollisionEnter(Collision other) {
         GameObject.FindWithTag("BOMB").GetComponent<BOMBeffectCtl>()
         .Detonation(this.transform.position,2);
         Destroy(this.gameObject);
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        // // state = State.stay;
-        // target = GameObject.Find("Player");
-        // m_rigidbody = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void Update()
@@ -33,17 +26,13 @@ public class MissileController : MonoBehaviour
         switch(state){
             case State.stay:
                 break;
+            //Playerの方向を向きつつ前に進む
             case State.search:
                 this.transform.LookAt(target.transform);
-                // Vector3 velo = m_rigidbody.velocity;
-                // velo.y = (-velo.y)+10;
-                // velo.z *=-1;
                 m_rigidbody.AddRelativeForce(Vector3.forward *thurust);
                 if(Vector3.Distance(this.transform.position,target.transform.position ) < 100){
                     Debug.Log(Vector3.Distance(this.transform.position,target.transform.position));
-
-                    state = State.move;
-                    Debug.Log("State.search");
+                    state = State.move;;
                     GetComponent<Collider>().enabled = true;
                 }
                 break;
@@ -66,7 +55,5 @@ public class MissileController : MonoBehaviour
         m_rigidbody.isKinematic = false;
         state = State.search;
         this.transform.LookAt(target.transform);
-        // m_rigidbody.velocity = addforce;
-
     }
 }

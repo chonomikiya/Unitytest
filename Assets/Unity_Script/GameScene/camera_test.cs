@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//test用script
 public class camera_test : MonoBehaviour
 {
 

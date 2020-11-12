@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//test、確認用
 public class move_test : MonoBehaviour
 {
     GameObject boss;

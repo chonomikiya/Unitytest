@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//Reticleを表示する処理20201112
 [RequireComponent(typeof(Camera))]
 
 public class ReticleUI : MonoBehaviour
@@ -15,7 +16,6 @@ public class ReticleUI : MonoBehaviour
     float distance;
     void Start()
     {   
-        // this.startWorldPointX = Camera.main.ViewportToWorldPoint(0,0,1);
         rbody = GetComponent<Rigidbody>();
         uiImage = GetComponent<RectTransform>();
     }
@@ -25,13 +25,11 @@ public class ReticleUI : MonoBehaviour
         uiImage.position
             = RectTransformUtility.
             WorldToScreenPoint(Camera.main,targetObject.position);
+        //テストプレイ時Reticleが下の画面外へ出ていたので追加
         if(uiImage.position.y <  10.0f ){
             Vector3 pos_temp = uiImage.position;
             pos_temp.y = 10.0f;
             uiImage.position = pos_temp;
-        }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log(uiImage.position);
         }
     }
 }

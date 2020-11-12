@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Playerのエネルギー弾の処理20201112
+//見返すとDirectorとGeneraterを二つに分ける必要はなかったのでリファクタリング対象
 public class EnergyWeaponDirector : MonoBehaviour
 {
     private SphereCollider myCollider;
@@ -15,19 +16,19 @@ public class EnergyWeaponDirector : MonoBehaviour
     void Start()
     {
         myRBody = GetComponentInParent<Rigidbody>();
-        // myCollider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if(chargeTimer){
             this.transform.localPosition = new Vector3(0,0,0);
         }
+        //Playerの向きの正面に向かって発射
         if(forceWeapon){
             myRBody.AddRelativeForce(this.transform.forward + releaseWeapon);        
-            if(Vector3.Distance
-            (this.transform.position,GameObject.Find("Player").transform.position) > 50)
+            if(Vector3.Distance(this.transform.position,GameObject.Find("Player").transform.position) > 50)
             {
                 Destroy(this.gameObject);
                 forceWeapon = false;
@@ -36,14 +37,10 @@ public class EnergyWeaponDirector : MonoBehaviour
     }
     public void fireWeapon(){
         myRBody = GetComponentInParent<Rigidbody>();
-        // myCollider.enabled = !myCollider.enabled;
         chargeTimer = false;
-        // float dis = Vector3.Distance(transform.position,GameObject.Find("ReticleTarget").transform.position);
-        
         Vector3 target = GameObject.Find("ReticleTarget").transform.position;
         transform.LookAt(target);
         myRBody.velocity = this.transform.forward * 20.0f;
         forceWeapon = true;
-        // myRBody.AddRelativeForce(this.transform.forward * releaseWeapon);
     }
 }

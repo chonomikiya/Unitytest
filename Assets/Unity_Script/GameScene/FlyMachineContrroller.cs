@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//上下にゆらゆら動く敵の処理20201112
+//没案
 public class FlyMachineContrroller : MonoBehaviour
 {
     Rigidbody m_rigidbody;

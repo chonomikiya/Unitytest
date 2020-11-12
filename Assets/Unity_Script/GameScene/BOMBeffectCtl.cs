@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//爆発エフェクトを呼び出す処理20201112
 public class BOMBeffectCtl : MonoBehaviour
 {
     [SerializeField]
@@ -11,6 +12,7 @@ public class BOMBeffectCtl : MonoBehaviour
     [SerializeField]
     GameObject base_detonation = null;
     // Start is called before the first frame update
+    // positionと種類を受け取ってその場所で爆発を起こす
     public void Detonation(Vector3 _position,int index){
         GameObject detonator;
         switch(index){
