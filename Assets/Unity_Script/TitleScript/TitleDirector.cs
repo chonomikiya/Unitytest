@@ -13,4 +13,7 @@ public class TitleDirector : MonoBehaviour
             SceneManager.LoadScene("GameScene");
         }
     }
+    public void EndScene(){
+        UnityEngine.Application.Quit();
+    }
 }
